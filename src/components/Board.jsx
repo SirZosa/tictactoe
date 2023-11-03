@@ -10,7 +10,7 @@ export default function Board({currentTurn, changeTurn, changeWinner, changeBoar
                 changeBoard(newBoard)
                 const winner = checkWinningCondition(newBoard)
                 changeWinner(winner)
-                checkTie(newBoard)
+                checkTie(newBoard, winner)
                 changeTurn()
             }
         }
@@ -26,9 +26,9 @@ export default function Board({currentTurn, changeTurn, changeWinner, changeBoar
         }
     }
 
-    function checkTie(boardAr){
+    function checkTie(boardAr, winner){
         const boardFull = boardAr.every(element => element !== null)
-        if(boardFull && !winnerCondition){
+        if(boardFull && !winner){
             changeWinner(false)
         }
     }
